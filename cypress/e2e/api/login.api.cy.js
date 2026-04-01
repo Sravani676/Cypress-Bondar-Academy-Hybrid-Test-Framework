@@ -92,7 +92,7 @@ describe("Login via API Tests", () => {
   });
   context("Invalid Authentication validation", () => {
     Object.entries(testData.invalidUsers).forEach(([key, data]) => {
-      it(data.testScenario, () => {
+      it(data.apiTestScenario, () => {
         const body = {
           user: {
             email: data.email,

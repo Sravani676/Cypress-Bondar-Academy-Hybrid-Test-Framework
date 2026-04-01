@@ -1,7 +1,8 @@
 {
   "invalidUsers": {
     "wrongPassword": {
-      "testScenario": "Authentication with Invalid user Credentials should return HTTP 403",
+      "testScenario": "Verify login with Invalid user credentials",
+      "apiTestScenario": "Authentication with Invalid user Credentials should return HTTP 403",
       "email": "cypress_user@test.com",
       "password": "WrongPassword999",
       "expectedError": "email or password is invalid",
@@ -12,7 +13,8 @@
       }
     },
     "blankEmail": {
-      "testScenario": "Authentication with Blank email should return HTTP 422",
+      "testScenario": "Verify login with Blank email as input",
+      "apiTestScenario": "Authentication with Blank email should return HTTP 422",
       "email": "       ",
       "password": "Test123",
       "expectedError": "email can't be blank",
@@ -23,7 +25,8 @@
       }
     },
     "blankPassword": {
-      "testScenario": "Authentication with Blank password should return HTTP 422",
+      "testScenario":"Verify login with Blank password as input",
+      "apiTestScenario": "Authentication with Blank password should return HTTP 422",
       "email": "cypress_user@test.com",
       "password": "      ",
       "expectedError": "password can't be blank",
@@ -34,7 +37,8 @@
       }
     },
     "blankEmailAndPassword": {
-      "testScenario": "Authentication with Blank user credentials should return HTTP 422",
+      "testScenario":"Verify login with Blank email and Blank password as input",
+      "apiTestScenario": "Authentication with Blank user credentials should return HTTP 422",
       "email": "              ",
       "password": "       ",
       "expectedError": "email can't be blank",
@@ -45,7 +49,8 @@
       }
     },
     "invalidEmailFormat": {
-      "testScenario": "Authentication with Invalid email format should return HTTP 403",
+      "testScenario": "Verify login with Invalid email format",
+      "apiTestScenario": "Authentication with Invalid email format should return HTTP 403",
       "email": "not-an-email",
       "password": "Test123",
       "expectedError": "email or password is invalid",
@@ -56,7 +61,8 @@
       }
     },
     "unregisteredEmail": {
-      "testScenario": "Authentication with Unregistered user credentials should return HTTP 403",
+      "testScenario": "Verify login with unregistered user credentials",
+      "apiTestScenario": "Authentication with Unregistered user credentials should return HTTP 403",
       "email": "unregistered-email@test.com",
       "password": "Test123",
       "expectedError": "email or password is invalid",
