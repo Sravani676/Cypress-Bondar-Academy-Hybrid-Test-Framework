@@ -3,7 +3,6 @@ import { LoginPage } from "../pages/LoginPage";
 const loginPage = new LoginPage();
 
 export function decipherPassword(key, password) {
-  cy.log('in func')
   const decryptedPassword = CryptoJS.AES.decrypt(password, key).toString(
     CryptoJS.enc.Utf8,
   );
