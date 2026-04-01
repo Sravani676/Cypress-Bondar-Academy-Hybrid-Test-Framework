@@ -1,4 +1,6 @@
 import { PageManager } from "../../pages/PageManager"
+import * as webActions from "../../helpers/webActions";
+
 
 const pm = new PageManager()
 describe('Home Page Validation', () => {
@@ -13,10 +15,9 @@ describe('Home Page Validation', () => {
     })
 
     it('Home-TC02: Verify the Page elements after authentication', () => {
-        cy.env(['VALID_EMAIL', 'VALID_PASSWORD', 'VALID_USERNAME']).then(({VALID_EMAIL, VALID_PASSWORD, VALID_USERNAME}) => {
-            pm.loginPage.navigateToLogin()
-            cy.log(VALID_EMAIL, VALID_PASSWORD)
-            pm.loginPage.login(VALID_EMAIL, VALID_PASSWORD)
+        pm.loginPage.navigateToLogin()
+        webActions.loginWithDefaultCredentials()
+        cy.env(['VALID_USERNAME']).then(({VALID_USERNAME}) => {
             pm.loginPage.assertLoggedIn(VALID_USERNAME)
         })
     })
