@@ -1,11 +1,9 @@
-
 # Cypress Bondar Academy — Hybrid Test Framework
 
 [![Cypress](https://img.shields.io/badge/Cypress-15.12.0-04C38E?logo=cypress&logoColor=white)](https://www.cypress.io/)
 [![Node](https://img.shields.io/badge/Node-20.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![CI](https://github.com/Sravani676/Cypress-Bondar-Academy-Hybrid-Test-Framework/actions/workflows/cypress.yml/badge.svg)](https://github.com/Sravani676/Cypress-Bondar-Academy-Hybrid-Test-Framework/actions/workflows/cypress.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A production-grade **Hybrid UI + API End-to-End Test Framework** built with Cypress 15, targeting the [Conduit blog app](https://conduit.bondaracademy.com) — the practice automation platform from Bondar Academy. The framework combines Page Object Model, tag-based test filtering, API bypass authentication, dynamic test data generation, and Mochawesome HTML reporting into a single cohesive solution.
 
@@ -66,8 +64,8 @@ Cypress-Bondar-Academy-Hybrid-Test-Framework/
 │   │   │   └── editor/
 │   │   │       └── editor.cy.js
 │   │   └── api/                     # API contract tests
-│   │       └── login/
-│   │           └── login-api.cy.js
+│   │       └── login-api.cy.js
+│   │       └── register-api.cy.js
 │   │
 │   ├── fixtures/                    # Static test data (JSON)
 │   │   ├── login.json
@@ -126,7 +124,7 @@ npx cypress verify
 ### Interactive Mode (Cypress Test Runner)
 
 ```bash
-npm run cy:open
+npm run test:open
 ```
 
 Opens the Cypress GUI. Select **E2E Testing**, pick a browser, and run individual specs.
@@ -134,13 +132,13 @@ Opens the Cypress GUI. Select **E2E Testing**, pick a browser, and run individua
 ### Headless Mode — All Tests
 
 ```bash
-npm run cy:run
+npm run test:run
 ```
 
 ### UI Tests Only
 
 ```bash
-npm run cy:run:ui
+npm run test:ui
 ```
 
 Runs all specs under `cypress/e2e/ui/**/*.cy.js`.
@@ -148,24 +146,50 @@ Runs all specs under `cypress/e2e/ui/**/*.cy.js`.
 ### API Tests Only
 
 ```bash
-npm run cy:run:api
+npm run test:api
 ```
 
 Runs all specs under `cypress/e2e/api/**/*.cy.js`.
 
+### Tag-Based Runs (via @cypress/grep)
+
+```bash
+# Smoke suite — fast gate for CI
+npm run test:smoke
+
+# Full regression suite
+npm run test:regression
+```
+
+Tests are tagged inline in spec files:
+
+```js
+it('should login with valid credentials', { tags: ['smoke', 'regression'] }, () => { ... });
+it('should show error for wrong password',  { tags: ['regression'] },          () => { ... });
+```
 
 ### Run + Generate Report
 
 ```bash
-npm run cy:run:report
+npm run test:report
 ```
 
 Runs all tests, then automatically merges and generates the HTML report.
 
+### Specific Browser
+
+```bash
+# Chrome
+npm run test:ui -- --browser chrome
+
+# Firefox
+npm run test:ui -- --browser firefox
+```
+
 ### Headed Mode (visible browser, no auto-close)
 
 ```bash
-npm run cy:run:headed
+npm run test:headed
 ```
 
 ---
@@ -271,7 +295,6 @@ The GitHub Actions workflow (`.github/workflows/cypress.yml`) runs on:
 
 - Every push to `main` or `develop`
 - Every pull request targeting `main` or `develop`
-- Nightly schedule at 06:00 UTC
 - Manual dispatch with suite and browser selectors
 
 
