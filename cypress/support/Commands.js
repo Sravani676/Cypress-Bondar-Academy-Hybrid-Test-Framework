@@ -1,4 +1,5 @@
-
+import registerCypressGrep from '@cypress/grep'
+registerCypressGrep()
 /**
  * Clears LocalStorage tokens and cookies for a clean logged out state
  */

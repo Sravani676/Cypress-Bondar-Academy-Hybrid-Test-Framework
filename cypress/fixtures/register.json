@@ -1,0 +1,52 @@
+{
+  "invalidRegistrationValues": {
+    "blankPassword": {
+      "api": {
+        "errorKey": "password",
+        "errorValue": "can't be blank"
+      }
+    },
+    "blankEmail": {
+      "api": {
+        "errorKey": "email",
+        "errorValue": "can't be blank"
+      }
+    },
+    "blankUsername": {
+      "api": {
+        "errorKey": "username",
+        "errorValue": "can't be blank"
+      }
+    },
+    "existingEmail": {
+      "api": {
+        "errorKey": "email",
+        "errorValue": "has already been taken"
+      }
+    },
+    "existingUsername": {
+      "api": {
+        "errorKey": "username",
+        "errorValue": "has already been taken"
+      }
+    },
+    "greaterThanMaxPasswordLength": {
+      "api": {
+        "errorKey": "password",
+        "errorValue": "is too long (maximum is 20 characters)"
+      }
+    },
+    "shorterThanMinPasswordLength": {
+      "api": {
+        "errorKey": "password",
+        "errorValue": "is too short (minimum is 8 characters)"
+      }
+    },
+    "invalidEmailFormat": {
+      "api": {
+        "errorKey": "email",
+        "errorValue": "is invalid"
+      }
+    }
+  }
+}

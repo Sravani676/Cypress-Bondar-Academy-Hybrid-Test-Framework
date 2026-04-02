@@ -24,15 +24,37 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress tests
+      # -----------------------------
+      # Run SMOKE tests on Pull Requests
+      # -----------------------------
+      - name: Run Smoke Tests (PR only)
+        if: github.event_name == 'pull_request'
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
           wait-on: 'https://conduit.bondaracademy.com'
           wait-on-timeout: 60
+          env: grep=smoke
         env:
           CYPRESS_BASE_URL: https://conduit.bondaracademy.com
 
+      # -----------------------------
+      # Run REGRESSION tests on Push to main/develop
+      # -----------------------------
+      - name: Run Regression Tests (Push only)
+        if: github.event_name == 'push'
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          wait-on: 'https://conduit.bondaracademy.com'
+          wait-on-timeout: 60
+          env: grep=regression
+        env:
+          CYPRESS_BASE_URL: https://conduit.bondaracademy.com
+
+      # -----------------------------
+      # Upload screenshots on failure
+      # -----------------------------
       - name: Upload screenshots on failure
         if: failure()
         uses: actions/upload-artifact@v4

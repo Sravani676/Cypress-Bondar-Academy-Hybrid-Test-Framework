@@ -9,12 +9,12 @@ describe('Home Page Validation', () => {
         pm.loginPage.navigate()
     })
 
-    it('Home-TC01: Verify the Page elements before authentication', ()=> {
+    it('Home-TC01: Verify the Page elements before authentication', { tags: "smoke" }, ()=> {
         pm.loginPage.assertLoggedOut()
 
     })
 
-    it('Home-TC02: Verify the Page elements after authentication', () => {
+    it('Home-TC02: Verify the Page elements after authentication', { tags: "smoke" }, () => {
         pm.loginPage.navigateToLogin()
         webActions.loginWithDefaultCredentials()
         cy.env(['VALID_USERNAME']).then(({VALID_USERNAME}) => {

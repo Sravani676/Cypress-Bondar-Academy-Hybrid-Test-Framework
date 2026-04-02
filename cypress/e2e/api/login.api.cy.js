@@ -3,11 +3,11 @@ import * as apiActions from "../../helpers/apiActions";
 import { PageManager } from "../../pages/PageManager";
 import testData from "../../fixtures/login.json";
 
-const pm = new PageManager();
 //let email, password, username;
 
 describe("Login via API Tests", () => {
   let email, password, username, url, headers;
+  const pm = new PageManager();
 
   before(() => {
     /**
@@ -27,7 +27,10 @@ describe("Login via API Tests", () => {
       },
     );
 
-    url = "https://conduit-api.bondaracademy.com/api/users/login";
+    /**
+     * Set the URL Endpoint and headers
+     */
+    url = Cypress.config('apiUrl')+'/users/login'
     headers = {
       "Content-Type": "application/json",
     };
@@ -38,7 +41,7 @@ describe("Login via API Tests", () => {
   });
 
   context("Successful API Authentication", () => {
-    it("Should return HTTP 200 and a valid user object upon authentication with valid credentials", () => {
+    it("Should return HTTP 200 and a valid user object upon authentication with valid credentials", { tags: "smoke" }, () => {
       const body = {
         user: {
           email: email,
@@ -56,7 +59,7 @@ describe("Login via API Tests", () => {
       });
     });
 
-    it("Injecting the JWT token obtained from Authentication and navigating to home page should load app as authenticated ", () => {
+    it("Injecting the JWT token obtained from Authentication and navigating to home page should load app as authenticated ",{ tags: "smoke" }, () => {
       const body = {
         user: {
           email: email,
@@ -92,7 +95,7 @@ describe("Login via API Tests", () => {
   });
   context("Invalid Authentication validation", () => {
     Object.entries(testData.invalidUsers).forEach(([key, data]) => {
-      it(data.apiTestScenario, () => {
+      it(data.apiTestScenario, { tags: "regression" }, () => {
         const body = {
           user: {
             email: data.email,
