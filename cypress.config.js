@@ -13,6 +13,7 @@ export default defineConfig({
     SECRET_KEY: "secret",
     VALID_USERNAME: "cypress-test-user",
     VALID_EMAIL: "cypress_user@test.com",
+    VALID_USER_ID: "49966",
     INVALID_EMAIL: "invalid@notexist.com",
     INVALID_PASSWORD: "wrongpass",
 

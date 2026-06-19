@@ -1,32 +1,31 @@
-import { LoginPage } from "../../pages/LoginPage";
 import * as webActions from "../../helpers/webActions";
 import testData from "../../fixtures/login.json";
+import { PageManager } from "../../pages/PageManager"
 
-const loginPage = new LoginPage();
+const pm = new PageManager()
 
 describe("LOGIN PAGE TESTS", () => {
   beforeEach(() => {
     cy.clearAuthState();
-    loginPage.navigateToLogin();
+    pm.loginPage.navigateToLogin()
   });
 
   context("Positive scenarios", () => {
     it("Verify page structure",{ tags: "smoke" }, () => {
-      loginPage.assertLoginPageStructure();
+      pm.loginPage.assertLoginPageStructure()
     });
 
     it("Login with valid credentials", { tags: "smoke" }, () => {
       webActions.loginWithDefaultCredentials();
-      loginPage.assertSuccessfulLogin();
+      pm.loginPage.assertSuccessfulLogin()
     });
   });
 
   context("Negative scenarios", () => {
     Object.entries(testData.invalidUsers).forEach(([key, data]) => {
       it(data.testScenario, { tags: "regression" }, () => {
-        cy.log(data.email, data.password)
-        loginPage.login(data.email, data.password);
-        loginPage.assertErrorMessages(data.expectedError)
+        pm.loginPage.login(data.email, data.password)
+        pm.loginPage.assertErrorMessages(data.expectedUIError)
       });
     });
   });

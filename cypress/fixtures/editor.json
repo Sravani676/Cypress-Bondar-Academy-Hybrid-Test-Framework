@@ -1,0 +1,106 @@
+{
+  "validArticle": {
+    "article": {
+      "title": "Cypress Test Article",
+      "description": "An article published by the Cypress automation test suite.",
+      "body": "This article is created via automated testing using Cypress and the Conduit app. To validate the full publish flow end to end.",
+      "tagList": ["cypress", "automation", "testing"]
+    }
+  },
+  "minimalArticle": {
+    "article": {
+      "title": "Minimal Article No Tags",
+      "description": "Just title, description and body — no tags.",
+      "body": "Short body content for a minimal article."
+    }
+  },
+  "updatedArticle": {
+    "article": {
+      "title": "Updated Cypress Test Article",
+      "description": "Updated description after edit.",
+      "body": "Updated body content."
+    }
+  },
+  "invalidArticles": {
+    "missingTitle": {
+      "apiTestScenario": "POST article with blank title should return HTTP 422",
+      "article": {
+        "title": "",
+        "description": "Description without a title.",
+        "body": "Body without a title."
+      },
+      "expectedApiError": {
+        "errorKey": "title",
+        "errorValue": "can't be blank"
+      },
+      "expectedStatusCode": 422,
+      "expectedUIError": "title can't be blank"
+    },
+    "missingBody": {
+      "apiTestScenario": "POST article with blank body should return HTTP 422",
+      "article": {
+        "title": "Title Without Body",
+        "description": "Description without body.",
+        "body": ""
+      },
+      "expectedApiError": {
+        "errorKey": "body",
+        "errorValue": "can't be blank"
+      },
+      "expectedStatusCode": 422,
+      "expectedUIError": "body can't be blank"
+    },
+    "missingDescription": {
+      "apiTestScenario": "POST article with blank description should return HTTP 422",
+      "article": {
+        "title": "Title Without Description",
+        "description": "",
+        "body": "Body without description"
+      },
+      "expectedApiError": {
+        "errorKey": "description",
+        "errorValue": "can't be blank"
+      },
+      "expectedStatusCode": 422,
+      "expectedUIError": "description can't be blank"
+    },
+    "allEmpty": {
+      "apiTestScenario": "POST article with all blank fields should return HTTP 422",
+      "article": {
+        "title": "",
+        "description": "",
+        "body": ""
+      },
+      "expectedApiError": {
+        "errorKey": "title",
+        "errorValue": "can't be blank"
+      },
+      "expectedStatusCode": 422,
+      "expectedUIError": "title can't be blank"
+    }
+  },
+  "readArticle": {
+    "slugId": "Article-for-Automated-test-49966",
+    "article": {
+      "title": "Article for Automated test",
+      "description": "This is a test description",
+      "body": "This is a test article body",
+      "tagList": ["Test", "cypress", "automation"]
+    }
+  },
+  "tagList": {
+    "single": "Cypress",
+    "multiple": [
+      "Test",
+      "Cypress",
+      "Automation",
+      "Blog",
+      "Git",
+      "Youtube",
+      "LinkedIn",
+      "QA"
+    ],
+    "withSpaces": "tag with spaces",
+    "special": "tag-hyphenated"
+  }
+}
