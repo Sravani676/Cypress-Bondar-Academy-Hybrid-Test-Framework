@@ -1,49 +1,57 @@
 {
   "invalidRegistrationValues": {
     "blankPassword": {
-      "api": {
+      "expectedUIError": "password can't be blank",
+      "expectedApiError": {
         "errorKey": "password",
         "errorValue": "can't be blank"
       }
     },
     "blankEmail": {
-      "api": {
+      "expectedUIError": "email can't be blank",
+      "expectedApiError": {
         "errorKey": "email",
         "errorValue": "can't be blank"
       }
     },
     "blankUsername": {
-      "api": {
+      "expectedUIError": "username can't be blank",
+      "expectedApiError": {
         "errorKey": "username",
         "errorValue": "can't be blank"
       }
     },
     "existingEmail": {
-      "api": {
+      "expectedUIError":"email has already been taken",
+      "expectedApiError": {
         "errorKey": "email",
         "errorValue": "has already been taken"
       }
     },
     "existingUsername": {
-      "api": {
+      "expectedUIError":"username has already been taken",
+      "expectedApiError": {
         "errorKey": "username",
         "errorValue": "has already been taken"
       }
     },
     "greaterThanMaxPasswordLength": {
-      "api": {
+      "expectedUIError":"password is too long (maximum is 20 characters)",
+      "expectedApiError": {
         "errorKey": "password",
         "errorValue": "is too long (maximum is 20 characters)"
       }
     },
     "shorterThanMinPasswordLength": {
-      "api": {
+      "expectedUIError":"password is too short (minimum is 8 characters)",
+      "expectedApiError": {
         "errorKey": "password",
         "errorValue": "is too short (minimum is 8 characters)"
       }
     },
     "invalidEmailFormat": {
-      "api": {
+      "expectedUIError":"email is invalid",
+      "expectedApiError": {
         "errorKey": "email",
         "errorValue": "is invalid"
       }

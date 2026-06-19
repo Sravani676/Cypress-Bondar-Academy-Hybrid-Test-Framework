@@ -5,9 +5,9 @@
       "apiTestScenario": "Authentication with Invalid user Credentials should return HTTP 403",
       "email": "cypress_user@test.com",
       "password": "WrongPassword999",
-      "expectedError": "email or password is invalid",
+      "expectedUIError": "email or password is invalid",
       "expectedStatusCode": 403,
-      "api": {
+      "expectedApiError": {
         "errorKey": "email or password",
         "errorValue": "is invalid"
       }
@@ -17,9 +17,9 @@
       "apiTestScenario": "Authentication with Blank email should return HTTP 422",
       "email": "       ",
       "password": "Test123",
-      "expectedError": "email can't be blank",
+      "expectedUIError": "email can't be blank",
       "expectedStatusCode": 422,
-      "api": {
+      "expectedApiError": {
         "errorKey": "email",
         "errorValue": "can't be blank"
       }
@@ -29,9 +29,9 @@
       "apiTestScenario": "Authentication with Blank password should return HTTP 422",
       "email": "cypress_user@test.com",
       "password": "      ",
-      "expectedError": "password can't be blank",
+      "expectedUIError": "password can't be blank",
       "expectedStatusCode": 422,
-      "api": {
+      "expectedApiError": {
         "errorKey": "password",
         "errorValue": "can't be blank"
       }
@@ -41,9 +41,9 @@
       "apiTestScenario": "Authentication with Blank user credentials should return HTTP 422",
       "email": "              ",
       "password": "       ",
-      "expectedError": "email can't be blank",
+      "expectedUIError": "email can't be blank",
       "expectedStatusCode": 422,
-      "api": {
+      "expectedApiError": {
         "errorKey": "email",
         "errorValue": "can't be blank"
       }
@@ -53,9 +53,9 @@
       "apiTestScenario": "Authentication with Invalid email format should return HTTP 403",
       "email": "not-an-email",
       "password": "Test123",
-      "expectedError": "email or password is invalid",
+      "expectedUIError": "email or password is invalid",
       "expectedStatusCode":403,
-      "api": {
+      "expectedApiError": {
         "errorKey": "email or password",
         "errorValue": "is invalid"
       }
@@ -65,9 +65,9 @@
       "apiTestScenario": "Authentication with Unregistered user credentials should return HTTP 403",
       "email": "unregistered-email@test.com",
       "password": "Test123",
-      "expectedError": "email or password is invalid",
+      "expectedUIError": "email or password is invalid",
       "expectedStatusCode": 403,
-      "api": {
+      "expectedApiError": {
         "errorKey": "email or password",
         "errorValue": "is invalid"
       }
