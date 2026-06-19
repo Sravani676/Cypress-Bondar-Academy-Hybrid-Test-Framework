@@ -1,6 +1,6 @@
 # Cypress Bondar Academy — Hybrid Test Framework
 
-[![Cypress](https://img.shields.io/badge/Cypress-15.12.0-04C38E?logo=cypress&logoColor=white)](https://www.cypress.io/)
+[![Cypress](https://img.shields.io/badge/Cypress-15.13.0-04C38E?logo=cypress&logoColor=white)](https://www.cypress.io/)
 [![Node](https://img.shields.io/badge/Node-20.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![CI](https://github.com/Sravani676/Cypress-Bondar-Academy-Hybrid-Test-Framework/actions/workflows/cypress.yml/badge.svg)](https://github.com/Sravani676/Cypress-Bondar-Academy-Hybrid-Test-Framework/actions/workflows/cypress.yml)
@@ -54,18 +54,14 @@ Cypress-Bondar-Academy-Hybrid-Test-Framework/
 ├── cypress/
 │   ├── e2e/
 │   │   ├── ui/                      # UI end-to-end tests
-│   │   │   ├── login/
-│   │   │   │   ├── login.cy.js
-│   │   │   │   └── post-login-verification.cy.js
-│   │   │   ├── register/
-│   │   │   │   └── register.cy.js
-│   │   │   ├── settings/
-│   │   │   │   └── settings.cy.js
-│   │   │   └── editor/
-│   │   │       └── editor.cy.js
+│   │   │   ├── login.cy.js
+│   │   │   ├── register.cy.js
+│   │   │   ├── editor.cy.js
+│   │   │   └── home.cy.js
 │   │   └── api/                     # API contract tests
-│   │       └── login-api.cy.js
-│   │       └── register-api.cy.js
+│   │       ├── login.api.cy.js
+│   │       ├── register.api.cy.js
+│   │       └── article.api.cy.js
 │   │
 │   ├── fixtures/                    # Static test data (JSON)
 │   │   ├── login.json
@@ -82,7 +78,6 @@ Cypress-Bondar-Academy-Hybrid-Test-Framework/
 │   │
 │   └── support/
 │       ├── commands.js              # Custom cy.* commands (UI)
-│       ├── commands.register.js     # Registration-specific commands
 │       └── e2e.js                   # Global hooks & uncaught exception handling
 │
 ├── cypress.config.js                # Cypress configuration
@@ -141,7 +136,10 @@ npm run test:run
 npm run test:ui
 ```
 
-Runs all specs under `cypress/e2e/ui/**/*.cy.js`.
+Runs all specs under `cypress/e2e/ui/**/*.cy.js`, including:
+- **Home Page** — Element validation before and after user authentication
+- **Login & Registration** — User authentication flows
+- **Editor** — Article creation and publishing workflows
 
 ### API Tests Only
 
@@ -149,7 +147,9 @@ Runs all specs under `cypress/e2e/ui/**/*.cy.js`.
 npm run test:api
 ```
 
-Runs all specs under `cypress/e2e/api/**/*.cy.js`.
+Runs all specs under `cypress/e2e/api/**/*.cy.js`, including:
+- **User Authentication API** — Login & registration via REST endpoints
+- **Article Management API** — Create, validate, and delete articles
 
 ### Tag-Based Runs (via @cypress/grep)
 
@@ -205,15 +205,16 @@ All page interactions are encapsulated in `cypress/pages/`. Each class exposes t
 | **Compound actions** | `loginPage.login(email, password)` |
 | **Assertions** | `loginPage.assertStillOnLoginPage()` |
 
-### Pages Covered
+### Pages & API Endpoints Covered
 
-| POM File | URL | Key Responsibility |
+| Page/Endpoint | URL/Path | Key Responsibility |
 |---|---|---|
 | `LoginPage.js` | `/#/login` | Login form actions, error assertions |
 | `RegisterPage.js` | `/#/register` | Registration form, duplicate user errors |
-| `SettingsPage.js` | `/#/settings` | Profile update, field pre-fill verification, logout |
 | `EditorPage.js` | `/#/editor` | Article creation, tag management, publish flow |
 | `NavigationBar.js` | All pages | Authenticated vs. unauthenticated nav state |
+| **API: Articles** | `/api/articles` | Create, validate, and delete articles via REST API |
+| **UI: Home Page** | `/#/` | Element validation before/after authentication |
 
 ---
 
@@ -223,13 +224,6 @@ Defined in `cypress/support/commands.js` and `commands.register.js`:
 
 | Command | Description |
 |---|---|
-| `cy.loginViaUI(email, password)` | Full UI login — used for login-specific tests |
-| `cy.loginViaApi(email, password)` | JWT login via REST API — fast setup for non-login tests |
-| `cy.registerViaUI(username, email, password)` | Full UI registration flow |
-| `cy.registerViaApi(username, email, password)` | REST API registration for test setup |
-| `cy.generateUniqueUser()` | Yields a timestamp-suffixed `{ username, email, password }` object |
-| `cy.assertAuthenticatedNav(username)` | Asserts navbar is in logged-in state |
-| `cy.assertUnauthenticatedNav()` | Asserts navbar is in logged-out state |
 | `cy.clearAuthState()` | Clears localStorage tokens and cookies |
 
 ---
